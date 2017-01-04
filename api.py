@@ -1,9 +1,7 @@
 """Service to return a sert of counters defined in REDIS."""
-from __future__ import print_function
 from flask import Flask, jsonify
 from flask_redis import FlaskRedis
 import os
-import sys
 
 app = Flask(__name__)
 
@@ -29,7 +27,6 @@ def list_messages(counters):
     for key in keys:
         resp[key] = redis_store.get(key).decode('utf-8')
 
-    print(resp, file=sys.stderr)
     return jsonify(counters=resp)
 
 
